@@ -1,0 +1,18 @@
+{% extends "voting/base_generic.html" %}
+
+{% block content %}
+  <h1>School Voting System</h1>
+  <p>Welcome  </p>
+  <p>System Statistics:</p>
+  <ul>
+    <li><strong>Elections:</strong> {{ num_elections }}</li>
+    <li><strong>Posts:</strong> {{ num_posts }}</li>
+    <li><strong>Candidates:</strong> {{ num_candidates }}</li>
+    <li><strong>Voters:</strong> {{ num_voters }}</li>
+  </ul>
+  <form method="POST">
+   {% csrf_token %}
+   {{ form.as_p}}
+   <input type="submit" value = "Submit">
+  </form>
+{% endblock %}
