@@ -1,0 +1,26 @@
+## MVM Project
+   - mkdir mvmproject
+   - cd mvmproject
+   - virtualenv env
+   - source env/bin/activate
+   - pip install django
+   - pip install mysqlclient
+   - django-admin startproject mvmweb
+   - cd mvmweb
+   - python manage.py startapp voting
+   - cd mvmweb
+      - modify settings.py
+         - add voting to INSTALLED_APPS array
+         - add DATABASE connection details 
+      - modify urls.py
+         - add entry for urlpatterns array 
+   - cd ..
+   - cd voting
+      - copy urls.py
+      - copy models.py
+      - copy views.py
+      - copy forms.py
+      - copy admin.py
+      - copy templates directory  
+   -cd ..
+   python manage.py runserver

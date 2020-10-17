@@ -1,0 +1,11 @@
+{% extends "voting/base_generic.html" %}
+
+{% block content %}
+  <h1>Candidates for {{election.desc_text}}</h1>
+  <form method="POST">
+   {% csrf_token %}
+   {{ forms.as_p}}
+   <input type="submit" value = "Submit">
+  </form>
+  <h1>Voter Name: {{voter_name}}</h1>
+{% endblock %}
