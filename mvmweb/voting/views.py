@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .forms import VotingForm, VoterIdForm
 from django.urls import reverse
@@ -10,7 +10,7 @@ from voting.models import Election, Post, Voter, Candidate, Ballot
 # Create your views here.
 
 def index(request):
-  num_elections = Election.objects.all().count()
+  num_elections = Election.objects.filter(status='M').count()
   num_posts = Post.objects.all().count()
   num_candidates = Candidate.objects.all().count()
   num_voters = Voter.objects.all().count()
@@ -45,7 +45,12 @@ def index(request):
   return render(request,'voting/index.html', context=context)
 
 def elections(request):
-  election_list = Election.objects.all()
+  election_list = Election.objects.filter(status='M')
+
+  if (election_list.count() == 1):
+       url = reverse('voting:election',kwargs={'election_id': election_list[0].id})
+       return HttpResponseRedirect(url)
+
   context = {
       'election_list' : election_list
   }
