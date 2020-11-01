@@ -1,0 +1,12 @@
+{% extends "voting/base_generic.html" %}
+{% block content %}
+  <h1>Results of the election</h1>
+  <ul>
+  {% for candidate in candidate_list %}
+    {% ifchanged candidate.post %} <b>{{candidate.post}}</b> {% endifchanged%}
+    <li>
+        {{candidate}}&nbsp&nbsp;{{candidate.votes}}&nbsp;vote(s) 
+    </li>
+  {% endfor %}
+  </ul>
+{% endblock %}

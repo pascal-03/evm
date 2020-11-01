@@ -1,0 +1,16 @@
+{% extends "voting/base_generic.html" %}
+
+{% block content %}
+  <h1>Results</h1>
+  {% if election_list %}
+  <ul>
+    {% for election in election_list %}
+         <li>
+            <a href="{% url 'voting:result' election.id  %}">{{ election.desc_text }}</a>
+         </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no elections currently.</p>
+  {% endif %}       
+{% endblock %}

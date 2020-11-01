@@ -116,3 +116,16 @@ def election(request,election_id):
     context["forms"] = myform
 
     return render(request,'voting/candidates.html', context=context)
+
+def results(request):
+  election_list = Election.objects.filter(status='M')
+  context = {
+      'election_list' : election_list
+  }
+  return render(request,'voting/resultlist.html', context=context)
+
+def result(request, election_id):
+  candidate_list = Candidate.objects.filter(election=election_id).order_by('post','-votes')
+
+  context= {'candidate_list': candidate_list}
+  return render(request,'voting/result.html', context=context)
