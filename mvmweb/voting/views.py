@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from .forms import VotingForm, VoterIdForm
 from django.urls import reverse
 from django.db.models import F
-
+from django.contrib.auth.decorators import login_required
 
 from voting.models import Election, Post, Voter, Candidate, Ballot
 # Create your views here.
@@ -117,6 +117,7 @@ def election(request,election_id):
 
     return render(request,'voting/candidates.html', context=context)
 
+@login_required()
 def results(request):
   election_list = Election.objects.filter(status='M')
   context = {
